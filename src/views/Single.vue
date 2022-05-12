@@ -1,0 +1,66 @@
+<template>
+  <v-card v-if="gif" class="overflow-hidden">
+    <Navigation />
+    <v-sheet>
+      <v-container>
+        <v-row dense>
+          <v-col>
+            <v-img
+              :src="gif.gif_url"
+              width="100%"
+              class="white--text align-end"
+              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+            >
+              <template v-slot:placeholder>
+                <v-row class="fill-height ma-0" align="center" justify="center">
+                  <v-progress-circular
+                    indeterminate
+                    color="grey lighten-5"
+                  ></v-progress-circular>
+                </v-row>
+              </template>
+            </v-img>
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-sheet>
+  </v-card>
+</template>
+
+<script>
+import api from "../middlewares/api";
+import Navigation from "../components/Navigation";
+
+export default {
+  name: "Single",
+
+  components: {
+    Navigation,
+  },
+
+  data: () => ({
+    url: "v1/gifs/",
+    api_key: "bHXi6e54UeAetadh1gr7DAe5QnOG0Fr0",
+    gif: null,
+  }),
+
+  async mounted() {
+    await this.getGifs();
+  },
+  methods: {
+    async getGifs() {
+      const response = await api.get(this.url + this.$route.params.id, {
+        params: {
+          api_key: this.api_key,
+        },
+      });
+
+      this.gif = {
+        id: response.data.data.id,
+        gif_url: response.data.data.images.downsized.url,
+      };
+      return this.gif;
+    },
+  },
+};
+</script>
