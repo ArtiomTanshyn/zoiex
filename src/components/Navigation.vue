@@ -54,8 +54,8 @@ export default {
     return {};
   },
   methods: {
-    async getSearchGifs(gifs) {
-      this.$emit("getSearchGifs", gifs);
+    async getSearchGifs(value) {
+      this.$emit("getSearchGifs", value);
     },
   },
   components: {

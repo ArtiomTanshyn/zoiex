@@ -61,7 +61,7 @@ export default {
   methods: {
     copyInfo(gif) {
       if (this.webShareApiSupported) {
-        navigator.share(gif);
+        navigator.share({ url: gif.gif_url, text: gif.name });
       } else {
         alert("oooops...");
       }
