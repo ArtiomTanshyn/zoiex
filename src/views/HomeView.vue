@@ -1,20 +1,15 @@
 <template>
-  <v-card v-if="gifs" class="overflow-hidden">
-    <Navigation @getSearchGifs="getSearchGifs" />
-    <v-sheet>
-      <Gifs v-if="!gifs.not_found" :gifs="gifs" />
-      <v-container v-else>
-        <v-row dense>
-          <h2>Ooooops! Gifs not found</h2>
-        </v-row>
-      </v-container>
-    </v-sheet>
-  </v-card>
+  <v-container>
+    <Gifs styl="min-height:1000px;" v-if="!gifs.not_found" :gifs="gifs" />
+
+    <v-row v-else dense>
+      <h2>Ooooops! Gifs not found</h2>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
 import Gifs from "../components/Gifs";
-import Navigation from "../components/Navigation";
 import api from "../middlewares/api";
 import debounce from "lodash/debounce";
 
@@ -23,7 +18,13 @@ export default {
 
   components: {
     Gifs,
-    Navigation,
+  },
+
+  props: {
+    searching: {
+      type: String,
+      default: null,
+    },
   },
 
   data: () => ({
@@ -68,9 +69,12 @@ export default {
           id: item.id,
         }));
     },
-
-    async getSearchGifs(value) {
-      value ? await this.searchGifs(value) : await this.getGifs();
+  },
+  watch: {
+    searching: {
+      async handler(value) {
+        value ? await this.searchGifs(value) : await this.getGifs();
+      },
     },
   },
 };

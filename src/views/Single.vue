@@ -1,30 +1,25 @@
 <template>
-  <v-card v-if="gif" class="overflow-hidden">
-    <Navigation />
-    <v-sheet>
-      <v-container>
-        <v-row dense>
-          <v-col>
-            <v-img
-              :src="gif.gif_url"
-              width="100%"
-              class="white--text align-end"
-              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-            >
-              <template v-slot:placeholder>
-                <v-row class="fill-height ma-0" align="center" justify="center">
-                  <v-progress-circular
-                    indeterminate
-                    color="grey lighten-5"
-                  ></v-progress-circular>
-                </v-row>
-              </template>
-            </v-img>
-          </v-col>
-        </v-row>
-      </v-container>
-    </v-sheet>
-  </v-card>
+  <v-container>
+    <v-row v-if="gif" dense>
+      <v-col>
+        <v-img
+          :src="gif.gif_url"
+          width="100%"
+          class="white--text align-end"
+          gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+        >
+          <template v-slot:placeholder>
+            <v-row class="fill-height ma-0" align="center" justify="center">
+              <v-progress-circular
+                indeterminate
+                color="grey lighten-5"
+              ></v-progress-circular>
+            </v-row>
+          </template>
+        </v-img>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

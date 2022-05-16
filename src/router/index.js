@@ -10,6 +10,7 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView,
+    props: true,
   },
   {
     path: '/:id',
