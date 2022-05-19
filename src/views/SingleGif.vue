@@ -1,7 +1,8 @@
 <template>
   <v-container>
+    <Loader v-show="loader" :loader="loader" />
     <v-row v-if="gif" dense>
-      <v-col>
+      <v-col class="col-12">
         <v-img
           :src="gif.gif_url"
           width="100%"
@@ -24,19 +25,20 @@
 
 <script>
 import api from "../middlewares/api";
-import Navigation from "../components/Navigation";
+import Loader from "../components/Loader";
 
 export default {
-  name: "Single",
+  name: "SingleGif",
 
   components: {
-    Navigation,
+    Loader,
   },
 
   data: () => ({
     url: "v1/gifs/",
     api_key: "bHXi6e54UeAetadh1gr7DAe5QnOG0Fr0",
     gif: null,
+    loader: false,
   }),
 
   async mounted() {
@@ -44,6 +46,7 @@ export default {
   },
   methods: {
     async getGifs() {
+      this.loader = true;
       const response = await api.get(this.url + this.$route.params.id, {
         params: {
           api_key: this.api_key,
@@ -54,7 +57,7 @@ export default {
         id: response.data.data.id,
         gif_url: response.data.data.images.downsized.url,
       };
-      return this.gif;
+      this.loader = false;
     },
   },
 };

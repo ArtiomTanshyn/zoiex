@@ -1,23 +1,29 @@
 <template>
   <v-container>
-    <Gifs styl="min-height:1000px;" v-if="!gifs.not_found" :gifs="gifs" />
-
-    <v-row v-else dense>
+    <Loader v-show="loader" :loader="loader" />
+    <v-row v-if="gifs.not_found" dense>
       <h2>Ooooops! Gifs not found</h2>
     </v-row>
+    <Gifs
+      v-if="!gifs.not_found"
+      :gifs="gifs"
+      @infiniteScrolling="infiniteScrolling"
+    />
   </v-container>
 </template>
 
 <script>
 import Gifs from "../components/Gifs";
+import Loader from "../components/Loader";
 import api from "../middlewares/api";
 import debounce from "lodash/debounce";
 
 export default {
-  name: "HomeView",
+  name: "ListGifs",
 
   components: {
     Gifs,
+    Loader,
   },
 
   props: {
@@ -32,6 +38,8 @@ export default {
     searchUrl: "v1/gifs/search",
     api_key: "bHXi6e54UeAetadh1gr7DAe5QnOG0Fr0",
     gifs: [],
+    loader: false,
+    limit: 9,
   }),
 
   async mounted() {
@@ -39,26 +47,50 @@ export default {
   },
   methods: {
     async getGifs() {
+      this.loader = true;
       const response = await api.get(this.trandUrl, {
         params: {
           api_key: this.api_key,
         },
       });
       this.gifs = this.convertArray(response.data.data);
+      this.loader = false;
     },
 
     searchGifs: debounce(async function (value) {
+      this.loader = true;
+
       const response = await api.get(this.searchUrl, {
         params: {
           api_key: this.api_key,
           q: value,
+          limit: this.limit,
         },
       });
+      // if (this.gifs.length === 0) {
+      //   this.gifs = this.convertArray(response.data.data);
+      // } else {
+      //   const data = this.convertArray(response.data.data);
+      //   for (let item of this.gifs) {
+      //     console.log(1);
+      //     const uniqItem = data.find((x) => x.id === item.id);
+      //     this.gifs.push(uniqItem);
+      //   }
+      // }
       this.gifs =
         response.data.data.length != 0
           ? this.convertArray(response.data.data)
           : { not_found: true };
+      this.loader = false;
     }, 500),
+
+    infiniteScrolling: debounce(async function () {
+      if (this.searching) {
+        this.limit += 9;
+        console.log(this.limit);
+        await this.searchGifs(this.searching);
+      }
+    }, 1500),
 
     convertArray(data) {
       return data
@@ -73,6 +105,8 @@ export default {
   watch: {
     searching: {
       async handler(value) {
+        this.gifs = [];
+        this.limit = 9;
         value ? await this.searchGifs(value) : await this.getGifs();
       },
     },

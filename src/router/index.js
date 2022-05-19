@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HomeView from '../views/HomeView.vue'
-import Single from '../views/Single.vue'
+import ListGifs from '../views/ListGifs.vue'
+import SingleGif from '../views/SingleGif.vue'
 
 Vue.use(VueRouter)
 
@@ -9,13 +9,13 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView,
+    component: ListGifs,
     props: true,
   },
   {
     path: '/:id',
     name: 'single',
-    component: Single,
+    component: SingleGif,
   },
 ]
 

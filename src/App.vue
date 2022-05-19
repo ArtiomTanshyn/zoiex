@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <Navigation @getSearchGifs="getSearchGifs" />
+    <Header @getSearchGifs="getSearchGifs" />
     <v-main>
       <router-view :searching="searching" />
     </v-main>
@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import Navigation from "./components/Navigation";
+import Header from "./components/Header";
 export default {
   name: "App",
 
   components: {
-    Navigation,
+    Header,
   },
 
   data: () => ({

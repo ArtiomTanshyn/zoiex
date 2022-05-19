@@ -3,13 +3,12 @@
     placeholder="Search"
     prepend-inner-icon="mdi-magnify"
     v-model="search"
-    dense
+    hide-details="auto"
   >
   </v-text-field>
 </template>
 
 <script>
-
 export default {
   name: "Search",
 
@@ -18,12 +17,11 @@ export default {
   }),
 
   methods: {
-
     searchGifs(value) {
       this.$emit("getSearchGifs", value);
     },
   },
-  
+
   watch: {
     search: {
       deep: true,
