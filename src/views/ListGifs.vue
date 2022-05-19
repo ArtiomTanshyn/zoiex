@@ -1,12 +1,21 @@
 <template>
-  <v-container>
+  <v-container class="pt-10 pb-10">
     <Loader v-show="loader" :loader="loader" />
-    <v-row v-if="gifs.not_found" dense>
-      <h2>Ooooops! Gifs not found</h2>
+    <v-row v-if="gifs.not_found" class="justify-center" dense>
+      <v-card>
+        <v-card-title class="justify-center"
+          >Ooooops! Gifs not found</v-card-title
+        >
+        <v-img
+          height="300px"
+          width="auto"
+          :src="require('@/assets/404.jpeg')"
+        ></v-img>
+      </v-card>
     </v-row>
     <Gifs v-if="!gifs.not_found" :gifs="gifs" />
     <v-row
-      v-if="searching && !gifs.not_found && gifs.length"
+      v-if="searchValue && !gifs.not_found && gifs.length"
       v-observe-visibility="handleScrolledToBottom"
     ></v-row>
   </v-container>
@@ -27,7 +36,7 @@ export default {
   },
 
   props: {
-    searching: {
+    searchValue: {
       type: String,
       default: null,
     },
@@ -40,6 +49,7 @@ export default {
     gifs: [],
     loader: false,
     limit: 9,
+    total_count: null,
   }),
 
   async mounted() {
@@ -67,18 +77,26 @@ export default {
           limit: this.limit,
         },
       });
+
       this.gifs =
         response.data.data.length != 0
           ? this.convertArray(response.data.data)
           : { not_found: true };
+      this.total_count =
+        response.data.pagination.total_count < 50
+          ? response.data.pagination.total_count
+          : 50;
       this.loader = false;
     }, 500),
 
     handleScrolledToBottom: debounce(async function (isVisible) {
-      if (isVisible && this.searching) {
+      if (
+        isVisible &&
+        this.searchValue &&
+        this.gifs.length !== this.total_count
+      ) {
         this.limit += 9;
-        console.log(this.limit);
-        await this.searchGifs(this.searching);
+        await this.searchGifs(this.searchValue);
       }
     }, 500),
 
@@ -93,10 +111,11 @@ export default {
     },
   },
   watch: {
-    searching: {
+    searchValue: {
       async handler(value) {
         this.gifs = [];
         this.limit = 9;
+        this.total_count = null;
         value ? await this.searchGifs(value) : await this.getGifs();
       },
     },

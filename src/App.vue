@@ -2,8 +2,13 @@
   <v-app>
     <Header @getSearchGifs="getSearchGifs" />
     <v-main>
-      <router-view :searching="searching" />
+      <router-view :searchValue="searchValue" />
     </v-main>
+    <v-footer dark padless>
+      <v-col class="text-center" cols="12">
+        {{ new Date().getFullYear() }} — <strong>Gifs</strong>
+      </v-col>
+    </v-footer>
   </v-app>
 </template>
 
@@ -17,11 +22,11 @@ export default {
   },
 
   data: () => ({
-    searching: null,
+    searchValue: null,
   }),
   methods: {
     getSearchGifs(value) {
-      this.searching = value;
+      this.searchValue = value;
     },
   },
 };

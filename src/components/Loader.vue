@@ -1,18 +1,5 @@
 <template>
-  <div
-    style="
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100vh;
-      background: RGBA(0, 0, 0, 0.7);
-      z-index: 100;
-    "
-  >
+  <div class="background">
     <v-card class="" width="75%" height="123px" dark>
       <v-card-text>
         Loading...
@@ -26,3 +13,18 @@
     </v-card>
   </div>
 </template>
+
+<style scoped>
+.background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: RGBA(0, 0, 0, 0.7);
+  z-index: 100;
+}
+</style>

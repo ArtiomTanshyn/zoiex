@@ -1,7 +1,7 @@
 <template>
   <v-app-bar app color="#333" dark>
     <v-container>
-      <v-row align="center">
+      <v-row class="pr-3 pl-3" align="center">
         <img
           width="50"
           @click="

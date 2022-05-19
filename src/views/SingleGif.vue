@@ -1,11 +1,11 @@
 <template>
-  <v-container>
+  <v-container class="pt-10">
     <Loader v-show="loader" :loader="loader" />
     <v-row v-if="gif" dense>
       <v-col>
         <v-img
           :src="gif.gif_url"
-          width="100%"
+          width="auto"
           class="white--text align-end"
           gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
         >
