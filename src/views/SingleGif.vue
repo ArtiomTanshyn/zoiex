@@ -2,7 +2,7 @@
   <v-container>
     <Loader v-show="loader" :loader="loader" />
     <v-row v-if="gif" dense>
-      <v-col class="col-12">
+      <v-col>
         <v-img
           :src="gif.gif_url"
           width="100%"

@@ -44,7 +44,6 @@
         </template>
       </v-img>
     </v-col>
-    <v-col height="300px" v-intersect="infiniteScrolling"></v-col>
   </v-row>
 </template>
 

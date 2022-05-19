@@ -4,11 +4,11 @@
     <v-row v-if="gifs.not_found" dense>
       <h2>Ooooops! Gifs not found</h2>
     </v-row>
-    <Gifs
-      v-if="!gifs.not_found"
-      :gifs="gifs"
-      @infiniteScrolling="infiniteScrolling"
-    />
+    <Gifs v-if="!gifs.not_found" :gifs="gifs" />
+    <v-row
+      v-if="searching && !gifs.not_found && gifs.length"
+      v-observe-visibility="handleScrolledToBottom"
+    ></v-row>
   </v-container>
 </template>
 
@@ -67,16 +67,6 @@ export default {
           limit: this.limit,
         },
       });
-      // if (this.gifs.length === 0) {
-      //   this.gifs = this.convertArray(response.data.data);
-      // } else {
-      //   const data = this.convertArray(response.data.data);
-      //   for (let item of this.gifs) {
-      //     console.log(1);
-      //     const uniqItem = data.find((x) => x.id === item.id);
-      //     this.gifs.push(uniqItem);
-      //   }
-      // }
       this.gifs =
         response.data.data.length != 0
           ? this.convertArray(response.data.data)
@@ -84,13 +74,13 @@ export default {
       this.loader = false;
     }, 500),
 
-    infiniteScrolling: debounce(async function () {
-      if (this.searching) {
+    handleScrolledToBottom: debounce(async function (isVisible) {
+      if (isVisible && this.searching) {
         this.limit += 9;
         console.log(this.limit);
         await this.searchGifs(this.searching);
       }
-    }, 1500),
+    }, 500),
 
     convertArray(data) {
       return data
