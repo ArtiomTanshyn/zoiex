@@ -1,2 +1,34 @@
-if(!self.define){let e,i={};const s=(s,o)=>(s=new URL(s+".js",o).href,i[s]||new Promise((i=>{if("document"in self){const e=document.createElement("script");e.src=s,e.onload=i,document.head.appendChild(e)}else e=s,importScripts(s),i()})).then((()=>{let e=i[s];if(!e)throw new Error(`Module ${s} didn’t register its module`);return e})));self.define=(o,n)=>{const r=e||("document"in self?document.currentScript.src:"")||location.href;if(i[r])return;let l={};const c=e=>s(e,r),t={module:{uri:r},exports:l,require:c};i[r]=Promise.all(o.map((e=>t[e]||c(e)))).then((e=>(n(...e),l)))}}define(["./workbox-2d118ab0"],(function(e){"use strict";e.setCacheNameDetails({prefix:"zoiex"}),self.addEventListener("message",(e=>{e.data&&"SKIP_WAITING"===e.data.type&&self.skipWaiting()})),e.precacheAndRoute([{url:"/zoiex/css/app.75a2f29c.css",revision:null},{url:"/zoiex/css/chunk-vendors.03b45b2a.css",revision:null},{url:"/zoiex/img/404.251ef6bc.jpeg",revision:null},{url:"/zoiex/img/g.243aea80.png",revision:null},{url:"/zoiex/index.html",revision:"e1cf1d73c96302c626557dd48a6193f6"},{url:"/zoiex/js/app.58cbd5d1.js",revision:null},{url:"/zoiex/js/chunk-vendors.374ab5f2.js",revision:null},{url:"/zoiex/manifest.json",revision:"6c0b4d5b845963a7250e2f9a673eeff7"},{url:"/zoiex/robots.txt",revision:"b6216d61c03e6ce0c9aea6ca7808f7ca"}],{})}));
-//# sourceMappingURL=service-worker.js.map
+/**
+ * Welcome to your Workbox-powered service worker!
+ *
+ * You'll need to register this file in your web app and you should
+ * disable HTTP caching for this file too.
+ * See https://goo.gl/nhQhGp
+ *
+ * The rest of the code is auto-generated. Please don't update this file
+ * directly; instead, make changes to your Workbox build configuration
+ * and re-run your build process.
+ * See https://goo.gl/2aRDsh
+ */
+
+importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+
+importScripts(
+  "/zoiex/precache-manifest.5c524b68268655d573fad021a88253c1.js"
+);
+
+workbox.core.setCacheNameDetails({prefix: "cazimbo"});
+
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
+  }
+});
+
+/**
+ * The workboxSW.precacheAndRoute() method efficiently caches and responds to
+ * requests for URLs in the manifest.
+ * See https://goo.gl/S9QRab
+ */
+self.__precacheManifest = [].concat(self.__precacheManifest || []);
+workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
