@@ -14,10 +14,10 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/zoiex/precache-manifest.8d2c2eb78e62e1b0ee56a28f7822f755.js"
+  "/zoiex/precache-manifest.b2643d383b3485d81c0586d0cfd44f1f.js"
 );
 
-workbox.core.setCacheNameDetails({prefix: "cazimbo"});
+workbox.core.setCacheNameDetails({prefix: "Cazimbo"});
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {
