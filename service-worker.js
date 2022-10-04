@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/zoiex/precache-manifest.41aaa921734f23af26006612b3c3b61e.js"
+  "/zoiex/precache-manifest.38e25897a9a8356578bf2a7252100c36.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "cazimbo"});
