@@ -1,106 +1,34 @@
-importScripts("/zoiex/precache-manifest.c5c86b69439e49bfc7f72aee953f7ecd.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+/**
+ * Welcome to your Workbox-powered service worker!
+ *
+ * You'll need to register this file in your web app and you should
+ * disable HTTP caching for this file too.
+ * See https://goo.gl/nhQhGp
+ *
+ * The rest of the code is auto-generated. Please don't update this file
+ * directly; instead, make changes to your Workbox build configuration
+ * and re-run your build process.
+ * See https://goo.gl/2aRDsh
+ */
 
-/* eslint-disable no-undef */
+importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
-self.addEventListener('message', (e) => {
-    if (!e.data) {
-      return
-    }
-  
-    if (e.data === 'skipWaiting') {
-      self.skipWaiting()
-    }
-  
-    if (e.data && e.data.type === 'LOGOUT') {
-      // Select who we want to respond to
-      console.log('logout')
-      caches.delete('fz-runtime')
-    }
-  })
-  
-  self.addEventListener('push', function (event) {
-    if (!(self.Notification && self.Notification.permission === 'granted')) {
-      return
-    }
-    if (event.data) {
-      const message = event.data.text()
-      event.waitUntil(sendNotification(message))
-    }
-  })
-  
-  self.addEventListener('notificationclick', function (event) {
-    event.notification.close()
-    if (!event.action) {
-      // Was a normal notification click
-      const urlToOpen = new URL(self.location.origin).href
-  
-      const promiseChain = clients.matchAll({
-        type: 'window',
-        includeUncontrolled: true
-      })
-        .then((windowClients) => {
-          let matchingClient = null
-  
-          for (let i = 0; i < windowClients.length; i++) {
-            const windowClient = windowClients[i]
-            if (windowClient.url === urlToOpen) {
-              matchingClient = windowClient
-              break
-            }
-          }
-  
-          if (matchingClient) {
-            return matchingClient.focus()
-          } else {
-            return clients.openWindow(urlToOpen)
-          }
-        })
-  
-      event.waitUntil(promiseChain)
-    }
-  })
-  
-  const sendNotification = message => {
-    // you could refresh a notification badge here with postMessage API
-    let notification = JSON.parse(message)
-    notification.options.badge = '/ferz_badge.png'
-    notification.options.icon = '/icon-512x512.png'
-  
-    return self.registration.showNotification(notification.title, notification.options)
+importScripts(
+  "/zoiex/precache-manifest.3a2bc84f451e73f44e626c3ac964a70b.js"
+);
+
+workbox.core.setCacheNameDetails({prefix: "Cazimbo"});
+
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.type === 'SKIP_WAITING') {
+    self.skipWaiting();
   }
-  console.log('workbox', workbox);
-  if (workbox) {
-    workbox.setConfig({
-      debug: false
-    })
-  
-    workbox.core.clientsClaim()
-  
-    workbox.core.setCacheNameDetails({
-      prefix: 'fz',
-      precache: 'static',
-      runtime: 'runtime'
-    })
-  
-    self.__precacheManifest = [].concat(self.__precacheManifest || [])
-  
-    workbox.precaching.precacheAndRoute(self.__precacheManifest, {})
-  
-    workbox.routing.registerRoute(
-      new RegExp('https:\\/\\/(api|dex|assets|chaosnet-midgard|sochain|cloudflare-eth|mainnet|eth-mainnet)\\' +
-        '.(ferz|2charge|github|binance|coingecko|exchangeratesapi|bepswap|com|etherscan|infura|alchemyapi|gateway)'),
-      new workbox.strategies.NetworkFirst({
-        cacheName: 'fz-runtime',
-        plugins: [
-          new workbox.cacheableResponse.Plugin({
-            statuses: [0, 200, 404]
-          })
-        ]
-      })
-    )
-  
-    workbox.routing.registerNavigationRoute('/')
-  } else {
-    console.log('Workbox didn\'t load')
-  }
-  
+});
+
+/**
+ * The workboxSW.precacheAndRoute() method efficiently caches and responds to
+ * requests for URLs in the manifest.
+ * See https://goo.gl/S9QRab
+ */
+self.__precacheManifest = [].concat(self.__precacheManifest || []);
+workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
