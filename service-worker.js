@@ -1,4 +1,4 @@
-importScripts("/zoiex/precache-manifest.2e89a8f5c4670c20aa097bbf8a6caca9.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/zoiex/precache-manifest.c4e4deac2d9b219963e8c096ff1d452e.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 /* eslint-disable no-undef */
 
@@ -99,7 +99,7 @@ self.addEventListener('message', (e) => {
       })
     )
   
-    workbox.routing.registerNavigationRoute('/')
+    workbox.routing.registerNavigationRoute('/zoiex/')
   } else {
     console.log('Workbox didn\'t load')
   }
