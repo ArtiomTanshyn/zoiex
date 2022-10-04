@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "29a28d99b5cd64384ef2",
-    "url": "/zoiex/css/app.3cf9f93d.css"
+    "revision": "e0e0fdb1d9f30de90a53",
+    "url": "/zoiex/css/app.44e72e7f.css"
   },
   {
-    "revision": "728d8fc6c2c8a5211afb",
-    "url": "/zoiex/css/chunk-vendors.13700131.css"
+    "revision": "33997d59f92af165792f",
+    "url": "/zoiex/css/chunk-vendors.595c3430.css"
   },
   {
     "revision": "458a767c2473ce7f5cf92224f90867cb",
@@ -20,16 +20,16 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/zoiex/img/mainImg.2ac7d9f2.jpg"
   },
   {
-    "revision": "d751f7a8f640f14990e39141a7213a9a",
+    "revision": "0e478dcf5c25ffaeae0e9b6ca87e784e",
     "url": "/zoiex/index.html"
   },
   {
-    "revision": "29a28d99b5cd64384ef2",
-    "url": "/zoiex/js/app.d3f0e6eb.js"
+    "revision": "e0e0fdb1d9f30de90a53",
+    "url": "/zoiex/js/app.c03a6882.js"
   },
   {
-    "revision": "728d8fc6c2c8a5211afb",
-    "url": "/zoiex/js/chunk-vendors.0e6088f5.js"
+    "revision": "33997d59f92af165792f",
+    "url": "/zoiex/js/chunk-vendors.8dbf7d5e.js"
   },
   {
     "revision": "eb7ab38d1d4b93933ccae3d43f3ecc68",
