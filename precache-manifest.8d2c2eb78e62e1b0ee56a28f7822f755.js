@@ -28,7 +28,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/zoiex/js/chunk-vendors.71722d56.js"
   },
   {
-    "revision": "f7b81c4dfa016e80eaa457cd1a889155",
+    "revision": "9b555e25354772def3f74c68da3cefb3",
     "url": "/zoiex/manifest.json"
   },
   {
