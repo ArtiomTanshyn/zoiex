@@ -1,4 +1,4 @@
-importScripts("/zoiex/precache-manifest.3b5a633fdfc0be5c9e375d51642ecf92.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
+importScripts("/zoiex/precache-manifest.4ac08d69db3d5d90cd658a7d41329eb9.js", "https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 /* eslint-disable no-undef */
 
