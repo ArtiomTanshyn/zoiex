@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "a0b52b5932a74f1fcf02",
+    "revision": "b1a4b894d8a844003200",
     "url": "/zoiex/css/app.89bfeb63.css"
   },
   {
@@ -20,12 +20,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/zoiex/img/mainImg.2ac7d9f2.jpg"
   },
   {
-    "revision": "ca5e736fd0373edf0e93b416cf19f747",
+    "revision": "11cb3e7b44f3fd3c4dc489d3e3112a06",
     "url": "/zoiex/index.html"
   },
   {
-    "revision": "a0b52b5932a74f1fcf02",
-    "url": "/zoiex/js/app.8e7fd2c2.js"
+    "revision": "b1a4b894d8a844003200",
+    "url": "/zoiex/js/app.8942dc33.js"
   },
   {
     "revision": "51042990d9f8b791e3ac",
